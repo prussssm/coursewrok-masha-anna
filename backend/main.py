@@ -58,6 +58,18 @@ app.include_router(catalog.router)
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request, db: Session = Depends(get_db)):
     marmelads = db.query(MarmeladType).all()
+    # Если в MarmeladType нет image_url, можно добавить вручную
+    # например:
+    images = {
+        "Кислый": "/static/products/sour.jpg",
+        "Сладкий": "/static/products/sweet.jpg",
+        "Острый": "/static/products/spicy.jpg",
+        "Ягодный": "/static/products/berry.jpg",
+        "Тропический": "/static/products/tropical.jpg",
+    }
+    for m in marmelads:
+        m.image_url = images.get(m.name, "/static/products/default.jpg")
+
     user = get_current_user(request)
     return templates.TemplateResponse("index.html", {"request": request, "marmelads": marmelads, "user": user})
 
@@ -65,7 +77,16 @@ def index(request: Request, db: Session = Depends(get_db)):
 @app.get("/products/{type_id}", response_class=HTMLResponse)
 def products_by_type(type_id: int, request: Request, db: Session = Depends(get_db)):
     marmelad_type = db.query(MarmeladType).get(type_id)
-    products = db.query(Product).filter(Product.type_id == type_id).all()
+    products = db.query(Product).filter(Product.marmelad_type_id == type_id).all()
+
+    # Присваиваем image_url вручную
+    images = {
+        "Кислый": "/static/products/sour.jpg",
+        "Сладкий": "/static/products/sweet.jpg",
+        "Острый": "/static/products/spicy.jpg",
+    }
+    marmelad_type.image_url = images.get(marmelad_type.name, "/static/products/default.jpg")
+
     return templates.TemplateResponse("products.html", {
         "request": request,
         "products": products,

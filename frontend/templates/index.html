@@ -1,349 +1,324 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Капитан мармелад</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="../static/style.css" />
     <style>
-        body {
-            margin: 0;
-            font-family: "Segoe UI", sans-serif;
-            background-color: #fff7f0;
-            color: #3e3e3e;
-        }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background-color: #fff7f0;
+        color: #3e3e3e;
+      }
 
-        header {
-            background-color: #ffd9b3;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+      header {
+        background-color: #ffd9b3;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-        header h1 {
-            margin: 0;
-            font-size: 24px;
-            color: #8b4000;
-        }
+      header h1 {
+        margin: 0;
+        font-size: 24px;
+        color: #8b4000;
+      }
 
-        nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #8b4000;
-            font-weight: bold;
-        }
+      nav a {
+        margin-left: 20px;
+        text-decoration: none;
+        color: #8b4000;
+        font-weight: bold;
+      }
 
-        .hero {
-            position: relative;
-            background: url("/static/marmalade-bg.jpg") no-repeat center/cover;
-            color: #fff4f4;
-            padding: 100px 30px;
-            text-align: center;
-            z-index: 1;
-        }
-        
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* тёмный оверлей */
-            z-index: -1;
-        }
+      .hero {
+        position: relative;
+        background: url("../static/marmalade-bg.jpg") no-repeat center/cover;
+        color: #fff4f4;
+        padding: 100px 30px;
+        text-align: center;
+        z-index: 1;
+      }
 
-        .hero h2 {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4); /* тёмный оверлей */
+        z-index: -1;
+      }
 
-        .hero p {
-            font-size: 18px;
-            max-width: 600px;
-            margin: auto;
-        }
+      .hero h2 {
+        font-size: 48px;
+        margin-bottom: 10px;
+      }
 
-        .hero h2,
-        .hero p {
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
-        }
+      .hero p {
+        font-size: 18px;
+        max-width: 600px;
+        margin: auto;
+      }
 
-        .features {
-            display: flex;
-            justify-content: space-around;
-            margin: 50px 0;
-            text-align: center;
-        }
+      .hero h2,
+      .hero p {
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      }
 
-        .feature {
-            background-color: #ffecd9;
-            padding: 20px;
-            border-radius: 15px;
-            width: 250px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
+      .features {
+        display: flex;
+        justify-content: space-around;
+        margin: 50px 0;
+        text-align: center;
+      }
 
-        .feature img {
-            width: 80px;
-            height: 80px;
-        }
+      .feature {
+        background-color: #ffecd9;
+        padding: 20px;
+        border-radius: 15px;
+        width: 250px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
 
-        .carousel-section {
-            margin: 60px 0;
-            padding: 0 30px;
-        }
+      .feature img {
+        width: 80px;
+        height: 80px;
+      }
 
-        .carousel-title {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #8b4000;
-        }
+      .carousel-section {
+        margin: 60px 0;
+        padding: 0 30px;
+      }
 
-        .carousel-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+      .carousel-title {
+        font-size: 28px;
+        margin-bottom: 20px;
+        color: #8b4000;
+      }
 
-        .carousel-track-container {
-            overflow: hidden;
-            width: 100%;
-            max-width: 1200px;
-        }
+      .carousel-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease;
-            gap: 30px;
-            padding: 20px 0;
-        }
+      .carousel-track-container {
+        overflow: hidden;
+        width: 100%;
+        max-width: 1200px;
+      }
 
-        .carousel-item {
-            flex: 0 0 calc(33.33% - 40px); /* учли margin */
-            margin: 0 20px; /* по 20px слева и справа */
-            background-color: #ffe6d0; /* чуть более насыщенный, теплый оттенок */
-            border-radius: 25px;
-            box-shadow: 0 8px 20px rgba(139, 64, 0, 0.15); /* более выраженная тень коричневого оттенка */
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .carousel-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(139, 64, 0, 0.25);
-        }
+      .carousel-track {
+        display: flex;
+        transition: transform 0.5s ease;
+        gap: 30px;
+        padding: 20px 0;
+      }
 
-        .carousel-item img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin-bottom: 10px;
-            border: 3px solid #fff4e6;
+      .carousel-item {
+        flex: 0 0 calc(33.33% - 40px); /* учли margin */
+        margin: 0 20px; /* по 20px слева и справа */
+        background-color: #ffe6d0; /* чуть более насыщенный, теплый оттенок */
+        border-radius: 25px;
+        box-shadow: 0 8px 20px rgba(139, 64, 0, 0.15); /* более выраженная тень коричневого оттенка */
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
 
+      .carousel-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(139, 64, 0, 0.25);
+      }
 
-        }
+      .carousel-item img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 15px;
+        margin-bottom: 10px;
+        border: 3px solid #fff4e6;
+      }
 
-        .carousel-inner {
-            display: flex;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            gap: 0; /* отключаем gap, он не нужен если у карточек есть margin */
-            padding: 0 20px; /* чтобы первая и последняя карточки не прилипали к краям */
-        }
-
-        .carousel-item p {
-            font-size: 18px;
-            color: #8b4000;
-            margin: 0;
-            font-weight: bold;
-        }
-
-        .carousel-controls button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #ffcc99; /* светло-оранжевый круг */
-            border: none;
-            border-radius: 50%; /* круглая форма */
-            width: 50px;
-            height: 50px;
-            font-size: 28px;
-            color: #8b4000; /* коричневые стрелочки */
-            cursor: pointer;
-            display: flex;
-            align-items: center;   /* вертикальное центрирование стрелки */
-            justify-content: center; /* горизонтальное центрирование */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            z-index: 10;
-            padding: 0;
-            line-height: 1;
-        }
-
-        .carousel-controls .prev {
-            left: -25px;
-        }
-
-        .carousel-controls .next {
-            right: -25px;
-        }
-
-
-
-        .carousel-btn:hover {
-            background-color: #ffc488;
-        }
-        
-        html {
+      .carousel-inner {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
         scroll-behavior: smooth;
-        }
+        gap: 0; /* отключаем gap, он не нужен если у карточек есть margin */
+        padding: 0 20px; /* чтобы первая и последняя карточки не прилипали к краям */
+      }
 
+      .carousel-item p {
+        font-size: 18px;
+        color: #8b4000;
+        margin: 0;
+        font-weight: bold;
+      }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #ffe0cc;
-            margin-top: 50px;
-        }
+      .carousel-controls button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #ffcc99; /* светло-оранжевый круг */
+        border: none;
+        border-radius: 50%; /* круглая форма */
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        color: #8b4000; /* коричневые стрелочки */
+        cursor: pointer;
+        display: flex;
+        align-items: center; /* вертикальное центрирование стрелки */
+        justify-content: center; /* горизонтальное центрирование */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+        padding: 0;
+        line-height: 1;
+      }
+
+      .carousel-controls .prev {
+        left: -25px;
+      }
+
+      .carousel-controls .next {
+        right: -25px;
+      }
+
+      .carousel-btn:hover {
+        background-color: #ffc488;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #ffe0cc;
+        margin-top: 50px;
+      }
     </style>
-</head>
-<body>
-
-<header>
-    <h1>Капитан мармелад</h1>
-    <nav>
+  </head>
+  <body>
+    <header>
+      <h1>Капитан мармелад</h1>
+      <nav>
         <a href="/">Главная</a>
         <a href="/about">О нас</a>
-        <a href="/#catalog">Каталог</a>
+        <a href="#catalog">Каталог</a>
         <a href="{% if user %}/profile{% else %}/login{% endif %}">Профиль</a>
-    </nav>
+      </nav>
+    </header>
 
-</header>
+    <div class="hero">
+      <h2>Добро пожаловать в мир мармелада!</h2>
+      <p>
+        Яркий, вкусный и всегда разный — открой для себя наш ассортимент уже
+        сегодня.
+      </p>
+    </div>
 
-<div class="hero">
-    <h2>Добро пожаловать в мир мармелада!</h2>
-    <p>Яркий, вкусный и всегда разный — открой для себя наш ассортимент уже сегодня.</p>
-</div>
-
-<div class="features">
-    <div class="feature">
-        <img src="/static/icons/fruit.png" alt="Фруктовый вкус">
+    <div class="features">
+      <div class="feature">
+        <img src="../static/icons/fruit.png" alt="Фруктовый вкус" />
         <h3>100% фруктовый</h3>
         <p>Натуральные ингредиенты и насыщенные вкусы в каждой пачке.</p>
-    </div>
-    <div class="feature">
-        <img src="/static/icons/box.png" alt="Упаковка">
+      </div>
+      <div class="feature">
+        <img src="../static/icons/box.png" alt="Упаковка" />
         <h3>Удобная доставка</h3>
         <p>Доставим мармелад по всей стране быстро и аккуратно.</p>
-    </div>
-    <div class="feature">
-        <img src="/static/icons/star.png" alt="Популярность">
+      </div>
+      <div class="feature">
+        <img src="../static/icons/star.png" alt="Популярность" />
         <h3>Любим всеми</h3>
         <p>Проверено детьми, взрослыми и гурманами — выбирают нас!</p>
+      </div>
     </div>
-</div>
 
-<section class="carousel-section">
-    <h2 class="catalog-title" id="catalog">Каталог</h2>
-    <div class="carousel-wrapper">
+    <section class="carousel-section">
+      <h2 class="catalog-title" id="catalog">Каталог</h2>
+      <div class="carousel-wrapper">
         <div class="carousel-track-container">
-            <div class="carousel-track">
-                <div class="carousel-item">
-                    <img src="/static/products/sour.jpg" alt="Кислый мармелад">
-                    <p>Кислый</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="/static/products/sweet.jpg" alt="Сладкий мармелад">
-                    <p>Сладкий</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="/static/products/spicy.jpg" alt="Острый мармелад">
-                    <p>Острый</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="/static/products/berry.jpg" alt="Ягодный микс">
-                    <p>Ягодный</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="/static/products/tropical.jpg" alt="Тропический микс">
-                    <p>Тропический</p>
-                </div>
-            </div>
+          <div class="carousel-track">
+            {% for marmelad in marmelads %}
+            <a href="/products/{{ marmelad.id }}" class="carousel-item">
+              <img
+                src="{{ marmelad.image_url }}"
+                alt="{{ marmelad.name }} мармелад"
+              />
+              <p>{{ marmelad.name }}</p>
+            </a>
+            {% endfor %}
+          </div>
         </div>
         <div class="carousel-controls">
-            <button class="prev">&#10094;</button>
-            <button class="next">&#10095;</button>
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
         </div>
+      </div>
+    </section>
+    <footer>&copy; 2025 Капитан мармелад | Сладости без границ 🍭</footer>
 
-    </div>
-</section>
+    <script>
+      const track = document.querySelector(".carousel-track");
+      const prevBtn = document.querySelector(".carousel-controls .prev");
+      const nextBtn = document.querySelector(".carousel-controls .next");
 
-    <h1>Каталог</h1>
-    <div class="carousel-track">
-        {% for item in marmelads %}
-        <a href="/products/{{ item.id }}" class="carousel-card">
-            <img src="{{ item.image_url }}" alt="{{ item.name }}">
-            <h2>{{ item.name }}</h2>
-        </a>
-        {% endfor %}
-    </div>
+      const originalItems = Array.from(track.children);
+      const gap = 30;
+      const itemWidth = originalItems[0].offsetWidth + gap;
 
+      const cloneStart = originalItems
+        .slice(-2)
+        .map((el) => el.cloneNode(true));
+      const cloneEnd = originalItems
+        .slice(0, 2)
+        .map((el) => el.cloneNode(true));
 
-<footer>
-    &copy; 2025 Капитан мармелад | Сладости без границ 🍭
-</footer>
+      cloneStart.forEach((clone) => track.prepend(clone));
+      cloneEnd.forEach((clone) => track.append(clone));
 
-<script>
-    const track = document.querySelector('.carousel-track');
-    const prevBtn = document.querySelector('.carousel-controls .prev');
-    const nextBtn = document.querySelector('.carousel-controls .next');
+      const totalItems = originalItems.length;
+      let position = itemWidth * 2;
+      track.style.transform = `translateX(-${position}px)`;
 
-    const originalItems = Array.from(track.children);
-    const gap = 30;
-    const itemWidth = originalItems[0].offsetWidth + gap;
+      let isTransitioning = false;
 
-    const cloneStart = originalItems.slice(-2).map(el => el.cloneNode(true));
-    const cloneEnd = originalItems.slice(0, 2).map(el => el.cloneNode(true));
-
-    cloneStart.forEach(clone => track.prepend(clone));
-    cloneEnd.forEach(clone => track.append(clone));
-
-    const totalItems = originalItems.length;
-    let position = itemWidth * 2;
-    track.style.transform = `translateX(-${position}px)`;
-
-    let isTransitioning = false;
-
-    function moveCarousel(dir) {
+      function moveCarousel(dir) {
         if (isTransitioning) return;
         isTransitioning = true;
 
         position += dir * itemWidth;
-        track.style.transition = 'transform 0.5s ease';
+        track.style.transition = "transform 0.5s ease";
         track.style.transform = `translateX(-${position}px)`;
 
-        track.addEventListener('transitionend', handleLoop, { once: true });
-    }
+        track.addEventListener("transitionend", handleLoop, { once: true });
+      }
 
-    function handleLoop() {
-        track.style.transition = 'none';
+      function handleLoop() {
+        track.style.transition = "none";
         if (position <= itemWidth) {
-            position = itemWidth * (totalItems + 1);
+          position = itemWidth * (totalItems + 1);
         } else if (position >= itemWidth * (totalItems + 2)) {
-            position = itemWidth * 2;
+          position = itemWidth * 2;
         }
         track.style.transform = `translateX(-${position}px)`;
         requestAnimationFrame(() => {
-            isTransitioning = false;
+          isTransitioning = false;
         });
-    }
+      }
 
-    prevBtn.addEventListener('click', () => moveCarousel(-1));
-    nextBtn.addEventListener('click', () => moveCarousel(1));
-</script>
-
-</body>
+      prevBtn.addEventListener("click", () => moveCarousel(-1));
+      nextBtn.addEventListener("click", () => moveCarousel(1));
+    </script>
+  </body>
 </html>

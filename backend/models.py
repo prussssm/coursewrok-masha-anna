@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
 from backend.database import Base
 
 class User(Base):
@@ -20,3 +21,6 @@ class Product(Base):
     image_url = Column(String)
     description = Column(String)
     price = Column(String)
+    marmelad_type_id = Column(Integer, ForeignKey("marmelad_types.id"))
+
+    marmelad_type = relationship("MarmeladType")
