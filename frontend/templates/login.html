@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Вход</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="register-page">
+
+    <div class="register-container">
+        <h2>Вход</h2>
+        <form method="post" action="/login_form">
+            <input type="text" name="first_name" placeholder="Имя" required><br>
+            <input type="text" name="last_name" placeholder="Фамилия" required><br>
+            <input type="password" name="password" placeholder="Пароль" required><br>
+            <button type="submit">Войти</button>
+        </form>
+        <p>Ещё не зарегистрированы? <a href="/register">Регистрация</a></p>
+    </div>
+</body>
+</html>

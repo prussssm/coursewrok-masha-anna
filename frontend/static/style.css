@@ -1,0 +1,61 @@
+body.register-page {
+    background-image: url("/static/marmalade-blur.jpg");
+    background-size: cover;
+    font-family: sans-serif;
+    color: #333;
+}
+
+.register-container {
+    background: rgba(255,255,255,0.9);
+    padding: 20px;
+    margin: 50px auto;
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+input {
+    width: 90%;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    background-color: #f86f6f;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* тут про products.html */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 250px;
+    padding: 16px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.03);
+}
+
+.product-card img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+

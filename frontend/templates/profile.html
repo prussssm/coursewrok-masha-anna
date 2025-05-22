@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            font-family: "Segoe UI", sans-serif;
+            margin: 0;
+            background-color: #fff7f0;
+            color: #3e3e3e;
+        }
+
+        header {
+            background-color: #ffd9b3;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #8b4000;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #8b4000;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 600px;
+            margin: 40px auto;
+            background-color: #fff8f1;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #d4bfa5;
+        }
+
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #e0d6cc;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .info h2 {
+            margin-bottom: 10px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #d4bfa5;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c1aa8e;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Капитан мармелад</h1>
+    <nav>
+        <a href="/">Главная</a>
+        <a href="/about">О нас</a>
+        <a href="/#catalog">Каталог</a>
+        <a href="{% if user %}/profile{% else %}/login{% endif %}">Профиль</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>Профиль</h1>
+    <img src="{{ user.avatar_url or '/static/avatar.png' }}" alt="Аватар" class="avatar">
+
+    <form action="/upload-avatar" method="post" enctype="multipart/form-data">
+        <input type="file" name="avatar" accept="image/*" required>
+        <br><br>
+        <button type="submit">Загрузить аватар</button>
+    </form>
+
+    <div class="info">
+        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Телефон:</strong> {{ user.phone }}</p>
+
+        
+        {% if user %}
+            <form action="/logout" method="get">
+                <button type="submit" style="
+                    background-color: #e74c3c;
+                    color: white;
+                    border: none;
+                    padding: 6px 12px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    margin-top: 10px;
+                ">
+                    Выйти
+                </button>
+            </form>
+        {% endif %}
+
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>
